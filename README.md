@@ -1,78 +1,84 @@
-# Cypress QA Portfolio
+# Projeto Cypress – Automação de Testes E2E
 
-Projeto de portfólio para demonstrar fundamentos de Quality Assurance (QA) e automação de testes End-to-End (E2E) com **Cypress** e **JavaScript**.
+Projeto desenvolvido para praticar e demonstrar conhecimentos em **Quality Assurance (QA)** e automação de testes End-to-End (E2E), utilizando Cypress e JavaScript.
 
-Os testes são executados no site de demonstração [SauceDemo](https://www.saucedemo.com/). O ambiente é externo e pode sofrer alterações; caso algum seletor ou fluxo mude, os testes precisarão ser atualizados.
+A aplicação utilizada nos testes é o [SauceDemo](https://www.saucedemo.com/), um ambiente de demonstração que permite testar funcionalidades comuns de um e-commerce, como autenticação, navegação por produtos, carrinho de compras e finalização de pedidos.
 
 ## Objetivo
 
-Praticar e demonstrar como:
-- automatizar cenários positivos e negativos;
-- validar comportamentos e mensagens da aplicação;
-- testar fluxos de autenticação, catálogo, carrinho e checkout;
-- reutilizar passos comuns com comandos personalizados;
-- organizar testes por funcionalidade;
-- executar testes localmente e em integração contínua.
+O objetivo deste projeto é aplicar conceitos de qualidade de software na prática, desenvolvendo testes automatizados que permitam verificar o funcionamento das principais funcionalidades da aplicação.
 
-## Tecnologias
+Durante o desenvolvimento, foram trabalhados:
 
-- JavaScript
-- Cypress
-- Node.js e npm
-- Git e GitHub
-- GitHub Actions
+- Criação de cenários de testes positivos e negativos;
+- Validação de mensagens, elementos e comportamentos da aplicação;
+- Automação de fluxos de login, catálogo, carrinho e checkout;
+- Reutilização de etapas por meio de comandos personalizados;
+- Organização dos testes por funcionalidade;
+- Execução de testes em ambiente local e integração contínua.
+
+## Tecnologias utilizadas
+
+- **JavaScript** – Linguagem utilizada na implementação dos testes.
+- **Cypress** – Framework de automação de testes E2E.
+- **Node.js e npm** – Ambiente de execução e gerenciamento de dependências.
+- **Git e GitHub** – Controle de versão e hospedagem do projeto.
+- **GitHub Actions** – Automação da execução dos testes.
 
 ## Cenários automatizados
 
-| Área | Cenário | Tipo |
-|---|---|---|
-| Login | Autenticação com credenciais válidas | Positivo |
-| Login | Senha incorreta | Negativo |
-| Login | Usuário não informado | Negativo |
-| Catálogo | Exibição da lista de produtos | Positivo |
-| Catálogo | Ordenação por preço crescente | Positivo |
-| Catálogo | Adição de produto ao carrinho | Positivo |
-| Carrinho | Revisão do produto adicionado | Positivo |
-| Checkout | Finalização com dados válidos | Positivo |
-| Checkout | Validação de campo obrigatório | Negativo |
+| Área     | Cenário                                    | Tipo     |
+| -------- | ------------------------------------------ | -------- |
+| Login    | Autenticação com credenciais válidas       | Positivo |
+| Login    | Tentativa de acesso com senha incorreta    | Negativo |
+| Login    | Tentativa de acesso sem informar o usuário | Negativo |
+| Catálogo | Exibição da lista de produtos              | Positivo |
+| Catálogo | Ordenação de produtos por preço crescente  | Positivo |
+| Catálogo | Adição de produto ao carrinho              | Positivo |
+| Carrinho | Revisão do produto adicionado              | Positivo |
+| Checkout | Finalização da compra com dados válidos    | Positivo |
+| Checkout | Validação de campos obrigatórios           | Negativo |
 
 ## Pré-requisitos
 
-- Node.js (versão 20 ou superior recomendada)
-- npm
-- Conexão com a internet
+Para executar o projeto, é necessário ter instalado:
 
-## Como executar
+- Node.js (versão 20 ou superior recomendada);
+- npm;
+- Git;
+- Conexão com a internet.
 
-1. Clone o repositório:
+## Como executar o projeto
 
-   ```bash
-   git clone https://github.com/SEU-USUARIO/cypress-qa-portfolio.git
-   cd cypress-qa-portfolio
-   ```
+**1. Clone o repositório:**
 
-2. Instale as dependências:
+```bash
+git clone https://github.com/gabrielhierro/projeto_cypress.git
+cd projeto_cypress
+```
 
-   ```bash
-   npm install
-   ```
+**2. Instale as dependências:**
 
-3. Abra o Cypress em modo interativo:
+```bash
+npm install
+```
 
-   ```bash
-   npm run cy:open
-   ```
+**3. Abra o Cypress em modo interativo:**
 
-4. Ou execute todos os testes no terminal:
+```bash
+npm run cy:open
+```
 
-   ```bash
-   npm run cy:run
-   ```
+**4. Para executar todos os testes diretamente pelo terminal:**
+
+```bash
+npm run cy:run
+```
 
 ## Organização do projeto
 
 ```text
-cypress-qa-portfolio/
+projeto_cypress/
 ├── .github/
 │   └── workflows/
 │       └── cypress.yml
@@ -92,32 +98,38 @@ cypress-qa-portfolio/
 
 ## Estratégia de testes
 
-Os testes verificam resultados observáveis na interface, como URL, mensagens de validação, presença de elementos, quantidade de produtos e conclusão do pedido. O comando personalizado `cy.login()` centraliza o fluxo de autenticação usado em diferentes arquivos.
+Os testes foram organizados de acordo com as funcionalidades da aplicação, contemplando tanto situações esperadas quanto situações em que o sistema deve apresentar mensagens de validação.
 
-A configuração inclui uma nova tentativa em caso de falha no modo headless. Isso pode ajudar a identificar instabilidade, mas não substitui a investigação da causa de um teste intermitente (*flaky test*).
+As verificações incluem autenticação, navegação entre páginas, ordenação de produtos, atualização do carrinho e conclusão do checkout.
 
-## Integração contínua
+Também foi criado o comando personalizado `cy.login()`, facilitando a reutilização do processo de autenticação em diferentes cenários de teste.
 
-O workflow do GitHub Actions executa os testes a cada push e pull request direcionados à branch `main`. O resultado fica disponível na aba **Actions** do repositório.
+## Integração contínua (CI)
 
-## Limitações conhecidas
+O projeto conta com integração contínua utilizando **GitHub Actions**.
 
-- O projeto testa uma aplicação pública de demonstração, não um sistema de produção.
-- Os testes dependem da disponibilidade e da estrutura atual do SauceDemo.
-- Não há integração com bancos de dados ou APIs privadas.
-- Os testes não comprovam cobertura completa da aplicação.
+Os testes são executados automaticamente a cada envio de alterações (_push_) e abertura de solicitações de integração (_pull requests_) direcionadas à branch `main`.
+
+Os resultados das execuções podem ser acompanhados diretamente na aba **Actions** do repositório.
+
+## Observações
+
+Os testes são realizados no SauceDemo, uma aplicação pública utilizada para fins de demonstração e prática de automação de testes.
+
+Por utilizar um ambiente externo, a execução depende de sua disponibilidade e do funcionamento atual de suas funcionalidades. Caso ocorram mudanças na aplicação, pode ser necessário atualizar os testes para acompanhar essas alterações.
 
 ## Próximas melhorias
 
-- Adicionar testes para remoção de itens e logout.
-- Criar fixtures para centralizar dados de teste.
-- Implementar cenários para diferentes perfis de usuário.
-- Adicionar relatórios de execução.
-- Expandir a cobertura com testes de acessibilidade e validações adicionais.
+- Implementar testes para remoção de produtos do carrinho;
+- Adicionar cenários de logout;
+- Utilizar fixtures para organizar e reutilizar dados de teste;
+- Implementar relatórios de execução;
+- Expandir a cobertura com testes de acessibilidade e outras validações.
 
 ## Autor
 
-**Gabriel Hierro**  
-Estudante de Sistemas de Informação | Interesse em QA e automação de testes
+**Gabriel Hierro**
 
-- GitHub: https://github.com/gabrielhierro
+Estudante de Sistemas de Informação, com interesse em Qualidade de Software (QA), automação de testes e desenvolvimento de aplicações.
+
+- GitHub: [github.com/gabrielhierro](https://github.com/gabrielhierro)
