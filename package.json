@@ -1,0 +1,17 @@
+{
+  "name": "cypress-qa-portfolio",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Projeto de portfólio com testes E2E automatizados usando Cypress e JavaScript.",
+  "scripts": {
+    "cy:open": "cypress open",
+    "cy:run": "cypress run",
+    "cy:run:chrome": "cypress run --browser chrome"
+  },
+  "devDependencies": {
+    "cypress": "^16.2.1"
+  },
+  "allowScripts": {
+    "cypress@16.2.1": true
+  }
+}
